@@ -5,6 +5,6 @@ export type ICreateUserParams = ICreateUserDTO;
 
 export interface IUserRepository {
   findAll(): Promise<IUser[]>;
-  findById(id: number): Promise<IUser | null>;
+  findByName(name: string): Promise<IUser | null>;
   create(user: ICreateUserParams): Promise<IUser>;
 }
