@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUser } from '../data/create.usecase';
 import { IUser } from '../protocols/user';
 import { ShowUser } from '../data/show.usecase';
-import { CreateUserParams, ShowUserParams } from './user.dto';
+import { CreateUserParams, ShowUserParams } from './user.validation';
 
 @Controller('/users')
 export class UserController {
