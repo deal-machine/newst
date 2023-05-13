@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUser } from '../data/create.usecase';
-import { ICreateUserDTO } from '../protocols/create-usecase';
 import { IUser } from '../protocols/user';
 import { ShowUser } from '../data/show.usecase';
+import { CreateUserParams } from './user.dto';
 
 @Controller('/users')
 export class UserController {
   constructor(private createUser: CreateUser, private showUser: ShowUser) {}
 
   @Post()
-  async create(@Body() user: ICreateUserDTO): Promise<IUser> {
+  async create(@Body() user: CreateUserParams): Promise<IUser> {
     return this.createUser.execute(user);
   }
 
