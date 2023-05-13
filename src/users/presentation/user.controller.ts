@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUser } from '../data/create.usecase';
 import { IUser } from '../protocols/user';
 import { ShowUser } from '../data/show.usecase';
-import { CreateUserParams } from './user.dto';
+import { CreateUserParams, ShowUserParams } from './user.dto';
 
 @Controller('/users')
 export class UserController {
@@ -14,7 +14,7 @@ export class UserController {
   }
 
   @Get('/:name')
-  async show(@Param() { name }: { name: string }): Promise<any> {
+  async show(@Param() { name }: ShowUserParams): Promise<any> {
     try {
       const user = await this.showUser.execute(name);
       return user;
