@@ -10,7 +10,7 @@ export class UserRepository implements IUserRepository {
   async findAll(): Promise<IUser[]> {
     throw new Error('Method not implemented.');
   }
-  async findByName(name: string): Promise<IUser> {
+  async findByName(name: string): Promise<IUser | null> {
     if (name === 'Douglas') {
       return {
         name,
@@ -18,11 +18,7 @@ export class UserRepository implements IUserRepository {
         id: 'ahsuisghiusjadpa',
       };
     }
-    return {
-      name,
-      email: 'notExisting@email.com',
-      id: 'ahsuisghiusjadpa',
-    };
+    return null;
   }
   async create(user: ICreateUserParams): Promise<IUser> {
     return {
