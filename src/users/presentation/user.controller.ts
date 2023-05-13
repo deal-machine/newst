@@ -10,7 +10,9 @@ export class UserController {
 
   @Post()
   async create(@Body() user: CreateUserParams): Promise<IUser> {
-    return this.createUser.execute(user);
+    const result = await this.createUser.execute(user);
+    console.log(result);
+    return result;
   }
 
   @Get('/:name')

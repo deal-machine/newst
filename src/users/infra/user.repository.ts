@@ -5,28 +5,33 @@ import {
 } from '../protocols/user-repository';
 import { UUIDGenerator } from 'src/infra/adapters/uuid-generator.adapter';
 import { IUser } from '../../domain/User';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from '../../infra/database/typeorm/entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
-  constructor(private readonly idGeneratorAdapter: UUIDGenerator) {}
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly repository: Repository<UserEntity>,
+    private readonly idGeneratorAdapter: UUIDGenerator,
+  ) {}
 
   async findAll(): Promise<IUser[]> {
-    throw new Error('Method not implemented.');
+    return this.repository.find();
   }
   async findByName(name: string): Promise<IUser | null> {
-    if (name === 'Douglas') {
-      return null;
-    }
-    return {
-      name,
-      email: 'existingEmail@email.com',
-      id: this.idGeneratorAdapter.generate(),
-    };
+    return this.repository.findOne({ where: { name } });
   }
-  async create(user: ICreateUserParams): Promise<IUser> {
-    return {
+  async create({ email, name }: ICreateUserParams): Promise<IUser> {
+    const user = this.repository.create({
       id: this.idGeneratorAdapter.generate(),
-      ...user,
-    };
+      name,
+      email,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    await this.repository.save(user);
+    return user;
   }
 }

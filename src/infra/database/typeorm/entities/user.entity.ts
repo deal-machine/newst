@@ -1,5 +1,12 @@
 import 'reflect-metadata';
-import { Entity, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -15,18 +22,16 @@ export class UserEntity {
   })
   email: string;
 
-  @Column({
-    primary: true,
-    unique: true,
-    name: 'id',
-    type: 'uuid',
-    nullable: false,
-  })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: string;
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamp',
+    default: () => 'NOW()',
+  })
+  createdAt: Date;
 
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: string;
+  @UpdateDateColumn({ name: 'updated_at', default: () => 'NOW()' })
+  updatedAt: Date;
 }

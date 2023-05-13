@@ -27,6 +27,14 @@ export class CreateTableUsers1683997725492 implements MigrationInterface {
             isPrimary: true,
             isUnique: true,
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+          },
         ],
       }),
     );

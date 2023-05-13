@@ -17,7 +17,7 @@ export class UserAlreadyExistsValidator
 
   async validate(value: string): Promise<boolean> {
     const userAlreadyExists = await this.userRepo.findByName(value);
-    return !!userAlreadyExists;
+    return !userAlreadyExists;
   }
 }
 

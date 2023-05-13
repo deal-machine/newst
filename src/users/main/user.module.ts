@@ -5,9 +5,11 @@ import { ShowUser } from '../data/show.usecase';
 import { UserRepository } from '../infra/user.repository';
 import { UserAlreadyExistsValidator } from '../presentation/user-already-exists.validator';
 import { UUIDGenerator } from 'src/infra/adapters/uuid-generator.adapter';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserEntity } from 'src/infra/database/typeorm/entities/user.entity';
 
 @Module({
-  imports: [],
+  imports: [TypeOrmModule.forFeature([UserEntity])],
   controllers: [UserController],
   providers: [
     CreateUser,
