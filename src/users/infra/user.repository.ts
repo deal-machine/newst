@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { IUser } from '../protocols/user';
 import {
   ICreateUserParams,
   IUserRepository,
 } from '../protocols/user-repository';
 import { UUIDGenerator } from 'src/infra/adapters/uuid-generator.adapter';
+import { IUser } from '../../domain/User';
 
 @Injectable()
 export class UserRepository implements IUserRepository {

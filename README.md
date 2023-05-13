@@ -32,6 +32,15 @@ $ docker compose up -d
 
 # open pgAdmin on browser and log in
 $ http://localhost:8081/
+
+# To create tables - running migrations
+$ npm run / yarn migrate
+
+# To drop tables - reverting migrations
+$ npm run / yarn revert
+
+# To create new migration
+$ npx / yarn typeorm migration:create ./src/infra/database/typeorm/migrations/{MigrationName}
 ```
 
 ## Installation

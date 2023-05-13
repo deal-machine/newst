@@ -1,5 +1,5 @@
+import { IUser } from '../../domain/User';
 import { ICreateUserDTO } from './create-usecase';
-import { IUser } from './user';
 
 export type ICreateUserParams = ICreateUserDTO;
 

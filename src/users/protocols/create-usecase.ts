@@ -1,4 +1,4 @@
-import { IUser } from './user';
+import { IUser } from '../../domain/User';
 
 export type ICreateUserDTO = Omit<IUser, 'id'>;
 

@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUser } from '../data/create.usecase';
-import { IUser } from '../protocols/user';
 import { ShowUser } from '../data/show.usecase';
 import { CreateUserParams, ShowUserParams } from './user.validation';
+import { IUser } from '../../domain/User';
 
 @Controller('/users')
 export class UserController {

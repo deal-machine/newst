@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { IShowUser } from '../protocols/show-usecase';
-import { IUser } from '../protocols/user';
 import { UserRepository } from '../infra/user.repository';
+import { IUser } from '../../domain/User';
 
 @Injectable()
 export class ShowUser implements IShowUser {
