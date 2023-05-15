@@ -10,7 +10,7 @@ export class CreateUser implements ICreateUser {
   async execute({ email, name }: ICreateUserDTO): Promise<IUser> {
     const isUserExists = await this.userRepo.findByName(name);
     if (isUserExists) return isUserExists;
-    console.log('here');
+
     const user = await this.userRepo.create({ name, email });
     if (!user) {
       throw new Error('Cannot Create User');
